@@ -1,0 +1,51 @@
+// styles
+
+
+@bg_color:#aabbcc;
+@base_color: #333;
+@box_color: #956868;
+
+html,body{
+    background-color:@bg_color;
+    margin: 0 0;
+    padding: 0 0;
+}
+body{
+    overflow:hidden;
+}
+@import "./lego.css";
+
+
+
+
+div.scroll_box{
+      display: inline-block;
+      overflow:hidden;
+}
+
+
+div.wrap_box{
+    display: inline-block;
+}
+
+div.box{
+    
+    display: inline-block;
+    &:nth-child(1){
+        background-color:@box_color;
+    }
+    &:nth-child(2){
+        background-color: lighten(@box_color, 20%);
+    }
+    &:nth-child(3){
+        background-color:  lighten(@box_color, 30%);
+    }
+}
+
+
+.dragscroll{
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: -o-grab;
+    cursor: grab;
+}

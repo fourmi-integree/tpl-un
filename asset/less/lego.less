@@ -1,0 +1,367 @@
+/*
+Description: lego 
+Author: fourmi-integree.com // andre beaudry
+Version: 1
+Tags: less
+*/
+
+div.wrap{
+    .wrap();
+}
+div.page_center{
+    .page_center();
+}
+
+div.left{
+    .left();
+}
+
+div.right {
+	.right();
+}
+
+div.clear {
+	.clear();
+}
+
+
+.hide{
+    .hide();
+}
+.w100{
+    width:100%;
+}
+
+.a_left{
+    text-align: left;
+}
+.a_right{
+    text-align: right;
+}
+.a_center{
+	text-align: center;
+}
+
+.a_top{
+    vertical-align:top;
+}
+
+
+.jsData{
+    display:none;
+}
+
+
+.no_select{
+    -moz-user-select:none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none
+    ;-o-user-select:none; 
+}
+
+ 
+.page_center(){
+	margin: 0 auto;
+}
+.clear() {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0
+}
+
+
+// float mixin
+// ajoute box-sizing; 
+// 2016 10 26
+
+.left(){
+    display: inline;
+	position: relative;
+	float: left;
+	box-sizing: border-box;
+}
+.right(){
+	display: inline;
+	position: relative;
+	float: right;
+	box-sizing: border-box;
+}
+.wrap(){
+    display: inline;
+	position: relative;
+	float: left;
+    width:100%;
+    z-index:1;
+    box-sizing: border-box;
+}
+
+
+// ajoute hide
+// 2017 10 26
+
+.hide(){
+    display:none;
+}
+
+
+//
+// <a href="#"></a>
+// <input type=button ...
+// utilise dabs reservation.less
+.style_btn_form(@w, @tc, @bc, @align:left, @fs:1.5)
+{
+    color:@tc ! important;
+    background-color:@bc ! important;
+    border:1px @bc solid;        
+    line-height:1em;
+    text-align:@align;
+    font-family: @font_family_base;
+    .font_s(@fs);
+    cursor:pointer;
+    display:inline-block;
+    padding: 0.5em 0.5em;
+    .border-radius(3px);
+    &.pad{
+        margin-bottom:1em;
+    }
+    
+    width: @w;
+    color:@couleur_texte;
+    text-decoration:none;
+    text-transform:uppercase;
+    &:visited,
+    &:active,
+    &:hover{
+        color: @tc ! important;
+        text-decoration:none;
+    }
+}
+
+.outline(@c:red){
+    outline:1px dotted @c;
+}
+
+
+.resizeable_bg_img(){
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.resizeable_bg_img(@c, @url){
+    background-color: @c;
+    background-image: url( @url );
+    background-repeat: no-repeat;
+    background-position: center 25%;
+    
+    background-size:cover;
+   
+    
+    
+     // IE 8 
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + @url + "', sizingMethod='scale')";
+    
+    // lower IE 
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader( src='@url', sizingMethod='scale' );
+   
+}
+    
+.position(@left, @top){
+    position:absolute;
+    top:@top;
+    left:@left;
+}
+
+.dimension(@width, @height){
+    width: @width;
+    height: @height;
+}
+//
+// ne plus utiliser
+.set_dimension(@width, @height){
+    width: @width;
+    height: @height;
+}
+
+//
+// font size selon rem
+// definition de la dimension de font de base
+// html { font-size: 62.5%; } /* 1rem vaut 10px */
+// alors .font_s(1.4); => font-size = 14px;
+.font_s(@s)
+{
+    
+    @ugly_ie: @s * 10;
+    font-size: unit(@ugly_ie, px);  // Fallback
+    font-size: unit(@s, rem);
+}
+
+//
+// @content = code de l icon
+// @font_family = font d icon
+.icon_font(@content, @font_family){
+    content: "\@{content}";
+    font-family: @font_family;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+}
+
+
+.opacity (@opacity: 0.5) {
+  /* IE 8 */
+  @opacity_ie = @opacity * 10; 
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+ @opacity_ie + ")";
+  /* IE 5-7 */
+  filter: alpha(opacity=50);
+  -webkit-opacity: 	@opacity;
+  -moz-opacity:     @opacity;
+  opacity: 		    @opacity;
+}
+    
+
+
+ 
+.twist_hover(@dt: 150ms)
+{
+  -webkit-transition: background-color,color @dt ease-out;
+  -moz-transition: background-color,color @dt ease-out;
+  -o-transition: background-color,color @dt ease-out;
+  transition: background-color,color @dt ease-out;
+}
+
+
+// liste horizontale
+.fragment_nav_li(@margin: 0 0 0 0){
+     ul{                        
+            display: block;
+            list-style: none;
+            position: relative;
+            margin:0 0;
+            li{
+                .left();
+                margin: @margin;
+                list-style-type: none;
+                a, a:visited, a:active{
+                     text-decoration:none;
+                }
+            }
+     }
+}
+
+.link(@c,@ch, @bh){
+    a{
+        color:@c;
+        
+        &:visited, &:active{
+            color:@c;
+        }
+        
+        &:hover{
+            color:@ch;
+            background-color:@bh;
+        }
+        
+    }
+}
+
+// BMK : border-radius   
+.border-radius(@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius:    @radius;
+    border-radius:         @radius;
+    -moz-background-clip:    padding;
+    -webkit-background-clip: padding-box;
+    background-clip:         padding-box;
+}
+.border-4-radius(@tl: 5px, @tr: 5px, @br: 5px, @bl: 5px) {
+    -webkit-border-radius: @tl @tr @br @bl;
+    -moz-border-radius:    @tl @tr @br @bl;
+    border-radius:         @tl @tr @br @bl;
+    -moz-background-clip:    padding;
+    -webkit-background-clip: padding-box;
+    background-clip:         padding-box;
+}
+
+
+// BMK : shadow 
+.text-shadow (@string: 0 1px 3px rgba(255, 255, 255, 0.25)) {
+	text-shadow: @string;
+}
+
+// BMK : drop-shadow
+.drop-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1) {
+  -webkit-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+}
+
+.in-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1) {
+  -webkit-box-shadow: inset @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: inset @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  box-shadow: inset @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+}
+
+
+// @color en hexadecimal
+.bg_color(@color: #fff, @alpha: 1) 
+{
+   background-color: hsla(hue(@color), saturation(@color), lightness(@color), @alpha);
+}
+
+
+.dev_trace(){
+    .outline();
+}
+
+.box-emboss(@colour_1, @opacity_1, @blur_1, @colour_2, @opacity_2, @blur_2, @h_shadow:0, @v_shadow:0){
+    @c_1 = lighten(@colour_1,   @opacity_1); // out
+    // @blur_1 = 1px;
+    @c_2 = lighten(@colour_2,    @opacity_2); // in
+    // @blur_2 = 1px;
+    
+    // @h_shadow = 0;
+    // @v_shadow = 0;
+    
+    -webkit-box-shadow: @c_1 @h_shadow @v_shadow @blur_1, inset @c_2  @h_shadow @v_shadow @blur_2;
+    -moz-box-shadow:    @c_1 @h_shadow @v_shadow @blur_1, inset @c_2  @h_shadow @v_shadow @blur_2;
+    box-shadow:         @c_1 @h_shadow @v_shadow @blur_1, inset @c_2  @h_shadow @v_shadow @blur_2;
+}
+
+
+
+//
+// Stretchy Sprites
+// a l essaie
+// fonctionne pour des sprites organisé horizontalement
+.stretchy() {     
+    .left(); 
+    display:block;
+     
+    overflow:hidden; 
+    max-width:160px;
+    .spacer {
+        width: 100%; 
+        height: auto;
+    }
+    .sprite {
+        position:absolute; 
+        top:0; 
+        left:0; 
+        max-width:none; 
+        max-height:100%;
+        .outline();
+    }
+}
+ 
+ 
+
+
+/* =
+// BMK : lego || FIN
+-------------------------------------------------------------- */
