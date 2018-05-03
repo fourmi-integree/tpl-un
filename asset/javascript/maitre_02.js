@@ -15,9 +15,6 @@ var p = {
 // BMK : jQuery ready
 jQuery( document ).ready(function( $ ){
      
-    var $ = jQuery;
-    
-    
     //
     // exec sur la class
     set_height_to_parent(".set_height_to_parent", 1);
